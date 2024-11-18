@@ -39,13 +39,13 @@ export const loginSchema = Yup.object().shape({
 
 //--------------------- register section ----------------------
 export const registerInitialValues = {
-  name: "",
+  userName: "",
   email: "",
   password: "",
 };
 
 export const registerSchema = Yup.object().shape({
-  name: nameValidation,
+  userName: nameValidation,
   email: emailValidation,
   password: passwordValidation,
 });

@@ -7,14 +7,18 @@ import {
   loginSchema,
 } from "../utils/validation/authSchema";
 import CustomButton from "../components/CustomButton";
+import { useLogin } from "../services/authService";
+import Spinner from "../components/Spinner";
 
 const LoginPage = () => {
+
+    const {mutate,isPending} = useLogin();
     //formik hook 
   const formik = useGlobalFormik({
     initialValues: loginInitialValues,
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      console.log(values);
+      mutate(values)
     },
   });
   return (
@@ -56,11 +60,21 @@ const LoginPage = () => {
                 error={formik.errors.password}
                 touched={formik.touched.password}
               />
-              <CustomButton
-                buttonText="Login"
-                className="w-full my-5 bg-yellow-500 text-white poppins-semibold hover:text-yellow-500 hover:bg-white hover:border-yellow-500"
-                type="submit"
-              />
+               {isPending ? (
+                <>
+                  <div className="p-5">
+                    <Spinner />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <CustomButton
+                    buttonText="Login"
+                    className="w-full my-5 bg-yellow-500 text-white poppins-semibold hover:text-yellow-500 hover:bg-white hover:border-yellow-500"
+                    type="submit"
+                  />
+                </>
+              )}
             </form>
           </div>
         </div>

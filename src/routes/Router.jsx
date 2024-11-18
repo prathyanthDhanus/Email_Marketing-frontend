@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: (
-          <Suspense fallback={Loader}>
+          <Suspense fallback={<Loader/>}>
             <LandingPage />
           </Suspense>
         ),
@@ -24,7 +24,7 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: (
-          <Suspense fallback={Loader}>
+          <Suspense fallback={<Loader/>}>
             <LoginPage />
           </Suspense>
         ),
@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: (
-          <Suspense fallback={Loader}>
+          <Suspense fallback={<Loader/>}>
             <RegisterPage />
           </Suspense>
         ),
