@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an axios instance for  API requests
 const Axios = axios.create({
-  baseURL: 'http://localhost:5000/api', 
+  baseURL: 'https://email-marketing-backend-vok0.onrender.com', 
   timeout: 10000,  
   headers: {
     'Content-Type': 'application/json', 

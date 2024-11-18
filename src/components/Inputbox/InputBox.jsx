@@ -1,25 +1,53 @@
-import React from 'react';
-import { IoIosArrowDown } from "react-icons/io";
 
-const InputBox = ({ label, placeholder, value, onChange, type = 'text' }) => {
+import React from "react";
+
+const InputBox = ({
+  title,
+  type = "text",
+  placeholder,
+  unit,
+  value,
+  onChange,
+  onBlur,
+  name,
+  rows,
+  className = "",
+  onFocus,
+  error,
+  touched,
+}) => {
+  const InputElement = rows ? "textarea" : "input";
+
   return (
-    <div className="mb-4">
-      {label && <label className="block text-gray-700 text-sm poppins-light mb-2">{label}</label>}
-      <div className="relative">
-        <input
+    <div className="pt-3 sm:text-sm md:text-sm lg:text-base poppins-light bg-white">
+      <div className="flex justify-between">
+        <h5 className="poppins-light">
+          {title} {unit && <span className="text-[#C00000]">({unit})</span>}
+        </h5>
+       
+      </div>
+      <div
+        className={`w-full flex items-center mt-2 p-3 border border-gray-300 rounded-lg focus-within:border-custom-yellow bg-custom-white ${className}`}
+      >
+        <InputElement
+          autoComplete="off"
           type={type}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 pr-10"
+          onBlur={onBlur}
+          name={name}
+          rows={rows}
+          onFocus={onFocus}
+          className="border-none outline-none w-full  text-xs  md:text-sm lg:text-sm xl:text-sm xxl:text-md "
         />
-        <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none gap-3">
-            <p>|</p>
-          <IoIosArrowDown className="text-gray-500" />
-        </div>
       </div>
+      {touched && error && (
+        <div className="text-red-500 mt-1 text-xs  md:text-sm lg:text-sm xl:text-sm xxl:text-md">{error}</div>
+      )}
     </div>
   );
 };
 
 export default InputBox;
+
